@@ -1,37 +1,42 @@
-import { BsBag } from "react-icons/bs";
-import { BiFoodMenu, BiStore } from "react-icons/bi";
-import { GoMegaphone, GoPackage } from "react-icons/go";
-import { HiOutlineUsers } from "react-icons/hi2";
-import { MdOutlineShowChart } from "react-icons/md";
-import { LiaStoreAltSolid } from "react-icons/lia";
+import { sanomatSans } from '@/config/fontConfig'
+import Image from 'next/image'
+import Link from 'next/link'
 
 const menuItems = [
-  { icon: <BsBag className="text-3xl" />, label: "Orders" },
-  { icon: <BiFoodMenu className="text-3xl" />, label: "Menu" },
-  { icon: <GoMegaphone className="text-3xl" />, label: "Marketing", isNew: true },
-  { icon: <HiOutlineUsers className="text-3xl" />, label: "Employees" },
-  { icon: <BiStore className="text-3xl" />, label: "Store" },
-  { icon: <MdOutlineShowChart className="text-3xl" />, label: "Insights", isNew: true },
-  { icon: <LiaStoreAltSolid className="text-3xl" />, label: "GrabKios" },
-  { icon: <GoPackage className="text-3xl" />, label: "Express", isNew: true }
+  { src: "/assets/images/resources/food.png", width: 51, height: 50, alt: "food", label: "Orders", url: "#" },
+  { src: "/assets/images/resources/mart.png", width: 51, height: 50, alt: "mart", label: "Menu", url: "#" },
+  { src: "/assets/images/resources/delivery.png", width: 51, height: 50, alt: "delivery", label: "Loans", url: "#" },
+  { src: "/assets/images/resources/transport.png", width: 51, height: 50, alt: "transport", label: "Marketing", url: "#" },
+  { src: "/assets/images/resources/bag.png", width: 51, height: 50, alt: "bag", label: "Employee", url: "#" },
+  { src: "/assets/images/resources/discount.png", width: 51, height: 50, alt: "discount", label: "Store", url: "#" },
+  { src: "/assets/images/resources/gift.png", width: 51, height: 50, alt: "gift", label: "Insight", url: "#" },
+  { src: "/assets/images/resources/more-circle.png", width: 47, height: 46, alt: "more-circle", label: "More", url: "#" },
 ];
 
-export default function Menu() {
+function Menu() {
   return (
-    <div className='flex flex-wrap gap-6 p-3 justify-center'>
+    <div className='flex flex-wrap gap-4 px-8 py-3 justify-around'>
       {menuItems.map((item, index) => (
-        <div key={index} className='w-16 h-16 rounded-xl border-2 text-gray-600 grid place-content-center relative'>
-          {item.icon}
-          <span className="absolute text-[10px] text-center w-full -bottom-4">
+        <Link
+          key={index}
+          prefetch={false}
+          href={item.url}
+          className='w-1/5 flex flex-col items-center'
+        >
+          <Image
+            src={item.src}
+            width={item.width}
+            height={item.height}
+            alt={item.alt}
+            priority={true}
+          />
+          <h6 className={`${sanomatSans.className} text-sm text-center mt-1`}>
             {item.label}
-          </span>
-          {item.isNew && (
-            <span className="bg-red-700 text-[10px] text-white absolute -right-2 -top-2 px-[5px] py-[1px] rounded-full">
-              New
-            </span>
-          )}
-        </div>
+          </h6>
+        </Link>
       ))}
     </div>
-  );
+  )
 }
+
+export default Menu;

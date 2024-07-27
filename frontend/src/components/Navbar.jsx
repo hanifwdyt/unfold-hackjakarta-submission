@@ -15,7 +15,7 @@ export default function Navbar() {
   const [activeItem, setActiveItem] = useState(1);
 
   return (
-    <div className='fixed bottom-0 flex sm:w-[428px] w-full py-4 text-gray-500 justify-around bg-zinc-200 bg-opacity-45 border-t'>
+    <div className='fixed bottom-0 flex sm:w-[428px] z-0 w-full py-4 text-gray-500 justify-around bg-zinc-200 bg-opacity-45 border-t'>
       {navItems.map(item => (
         <div
           key={item.id}
