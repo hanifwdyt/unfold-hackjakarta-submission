@@ -13,7 +13,7 @@ export default function Profile() {
       </div>
       <div className='flex flex-col'>
         <div className='flex justify-between mt-12'>
-          <h5>Today's Highlights</h5>
+          <h5>Today&apos;s Highlights</h5>
           <span>1/1</span>
         </div>
         <div className='grid grid-cols-1 divide-y-[1px] shadow-lg rounded-lg border-[1px] mt-4 h-fit'>
