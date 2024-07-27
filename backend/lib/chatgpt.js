@@ -62,6 +62,8 @@ exports.generateDescription = async function fetchChatCompletion(data) {
         });
 
         const responseText = chatCompletion.choices[0].message.content;
+
+        console.log('response Text:' + responseText)
         
         // remove json formatting codeblock
         const cleanedResponseText = responseText

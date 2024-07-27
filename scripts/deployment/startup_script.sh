@@ -11,3 +11,5 @@ sudo apt-get remove apache2*
 sudo apt install ufw
 
 sudo ufw allow 'Nginx HTTP'
+
+sudo systemctl status nginx
