@@ -54,12 +54,22 @@ const MenuItem = ({ item, enabled, onToggle, onClick }) => (
         <h5 className={`${sanomatSans.className} text-sm`}>{item.price}</h5>
       </div>
     </div>
-    <label className="relative inline-flex items-center cursor-pointer" onClick={(event) => event.stopPropagation()}>
-      <input type="checkbox" className="sr-only" checked={enabled} onChange={onToggle} />
-      <div className={`w-11 h-6 ${enabled ? 'bg-green-500' : 'bg-gray-300'} rounded-full peer peer-checked:bg-blue-600 transition-colors duration-200`}>
-        <div className={`w-5 h-5 bg-white rounded-full shadow transform transition-transform duration-200 ${enabled ? 'translate-x-5' : 'translate-x-0'}`}></div>
-      </div>
-    </label>
+    <div>
+      <label className="relative inline-flex items-center cursor-pointer" onClick={(event) => event.stopPropagation()}>
+        <input type="checkbox" className="sr-only" checked={enabled} onChange={onToggle} />
+        <div className={`w-11 h-6 ${enabled ? 'bg-green-500' : 'bg-gray-300'} rounded-full peer peer-checked:bg-blue-600 transition-colors duration-200`}>
+          <div className={`w-5 h-5 bg-white rounded-full shadow transform transition-transform duration-200 ${enabled ? 'translate-x-5' : 'translate-x-0'}`}></div>
+        </div>
+      </label>
+      
+      {item.ai_enhanced && (
+        <div className='bg-gray-500 text-white text-xs rounded-lg p-1 w-[60px]'>
+          Dibuat AI
+        </div>
+      )}
+
+    </div>
+    
   </li>
 );
 
@@ -107,14 +117,14 @@ const CreateModal = ({ onClose }) => (
   <div id="background" className="fixed inset-0 bg-black bg-opacity-25 z-50 flex items-end justify-center" onClick={onClose}>
     <div className="bg-white rounded-t-lg shadow-lg w-full sm:w-[428px]">
       <div className="p-4">
-        <div className="flex items-center justify-between mb-4">
+        <Link href='/create' className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
             <PiOpenAiLogoLight />
             <span className="text-lg font-medium">Buat menu baru dengan AI</span>
           </div>
           <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full">new</span>
           <MdKeyboardArrowRight />
-        </div>
+        </Link>
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
             <IoAddCircle />
