@@ -5,10 +5,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation"
 import { MdArrowBackIos } from "react-icons/md";
 
-function Header() {
+function Header({ title, route }) {
   const path = usePathname()
 
-  const head = path.split('/')[1].charAt(0).toUpperCase() + path.split('/')[1].slice(1)
   return (
     path === '/' ?
       <div className='flex gap-1 text-xl p-3'>
@@ -20,13 +19,13 @@ function Header() {
       :
       <div className='flex gap-2 text-xl p-3 items-center'>
         <Link
-          href="/"
+          href={route}
           prefetch={false}
         >
           <MdArrowBackIos />
         </Link>
         <span className={`${sanomatSans.className} font-bold`}>
-          {head}
+          {title}
         </span>
       </div>
   )

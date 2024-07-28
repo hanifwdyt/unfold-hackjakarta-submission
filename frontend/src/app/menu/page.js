@@ -1,15 +1,20 @@
 import Header from '@/components/Header'
 import Items from '@/components/Items'
+import { getAllMenus } from '@/lib/menu'
+import { unstable_noStore } from 'next/cache'
 import React from 'react'
 
-function Page() {
+async function Page() {
+  unstable_noStore()
+  const data = await getAllMenus()
+
   return (
     <>
       <div>
-        <Header />
+        <Header title="Menu" route="/" />
       </div>
       <div>
-        <Items />
+        <Items data={data} />
       </div>
     </>
   )
