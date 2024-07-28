@@ -6,9 +6,11 @@ const port = 3000
 
 const chatgpt = require('./lib/chatgpt')
 const menuModel = require('./model/menu')
+const menuUtil = require('./utils/menuUtil')
 
 app.use(express.json())
 
+// middleware
 const apiKeyMiddleware = (req, res, next) => {
     const apiKey = req.headers['api-key'];
     const validApiKey = process.env.API_KEY;
@@ -20,10 +22,12 @@ const apiKeyMiddleware = (req, res, next) => {
     }
 }
 
+// health check
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
+// gen ai api
 app.post('/genai/menu', apiKeyMiddleware, async (req, res) => {
 
     const namaMenu = req.body.namaMenu
@@ -41,7 +45,7 @@ app.post('/genai/menu', apiKeyMiddleware, async (req, res) => {
     res.send(chatgptRes)
 })
 
-app.post('/genai/menu/mock', apiKeyMiddleware, async (req, res) => {
+app.post('/genai/menu/mock', apiKeyMiddleware, async (req, res) => { // gei ai mock
     const menu = [
         {
             "title": "Ayam Bakar Spesial",
@@ -60,7 +64,7 @@ app.post('/genai/menu/mock', apiKeyMiddleware, async (req, res) => {
     res.json(menu);
 });
 
-// penunjang kehidupan
+// penunjang kehidupan AAAAAAAAAA しっかりしてよ！
 app.post('/menu', apiKeyMiddleware, async (req, res) => {
 
     const insert_request = {
@@ -68,7 +72,9 @@ app.post('/menu', apiKeyMiddleware, async (req, res) => {
         description: req.body.description,
         caraMasak: req.body.caraMasak,
         bahan: req.body.bahan,
-        kategori: req.body.kategori
+        kategori: req.body.kategori,
+        price: req.body.price,
+        discountedPrice: req.body.discountedPrice
     }
     
     menuModel.insert(insert_request)
@@ -86,6 +92,8 @@ app.post('/menu/:id', apiKeyMiddleware, async (req, res) => {
         caraMasak: req.body.caraMasak,
         bahan: req.body.bahan,
         kategori: req.body.kategori,
+        price: req.body.price,
+        discountedPrice: req.body.discountedPrice,
         id: id
     }
     
@@ -101,21 +109,31 @@ app.get('/menu/:id', apiKeyMiddleware, async (req, res) => {
     try {
         const rows = await menuModel.findById(id)
         console.log(rows)
-        
-        res.json(rows)
+
+        let resp_rows = rows.map((item) => {
+            const { price, discounted_price } = item
+            const discount = menuUtil.getPercentageDiscount(price, discounted_price)
+            return { ...item, discount }
+        })
+
+        res.json(resp_rows)
     } catch (error) {
         console.error(error)
         res.status(500)
     }
-});
+})
 
 app.get('/menus', apiKeyMiddleware, async (req, res) => {
     
     try {
         const rows = await menuModel.all()
-        console.log(rows)
-        
-        res.json(rows)
+        let resp_rows = rows.map((item) => {
+            const { price, discounted_price } = item
+            const discount = menuUtil.getPercentageDiscount(price, discounted_price)
+            return { ...item, discount }
+        });
+
+        res.json(resp_rows);
     } catch (error) {
         console.error(error)
         res.status(500)

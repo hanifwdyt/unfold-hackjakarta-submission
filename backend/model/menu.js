@@ -3,8 +3,8 @@ const db = require("./../lib/db");
 exports.insert = function insert(data) {
 
   db.run(
-    `INSERT INTO menu (title, description, caraMasak, bahan, kategori) VALUES (?, ?, ?, ?, ?)`,
-    [data.title, data.description, data.caraMasak, data.bahan, data.kategori],
+    `INSERT INTO menu (title, description, caraMasak, bahan, kategori, price, discounted_price) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+    [data.title, data.description, data.caraMasak, data.bahan, data.kategori, data.price, data.discountedPrice],
     function (error) {
         if (error) {
             console.error(error.message)
@@ -17,8 +17,8 @@ exports.insert = function insert(data) {
 exports.update = function update(data) {
 
     db.run(
-      `UPDATE menu set title=?, description=?, caraMasak=?, bahan=?, kategori=? WHERE id=?`,
-      [data.title, data.description, data.caraMasak, data.bahan, data.kategori, data.id],
+      `UPDATE menu set title=?, description=?, caraMasak=?, bahan=?, kategori=?, price=?, discounted_price=? WHERE id=?`,
+      [data.title, data.description, data.caraMasak, data.bahan, data.kategori, data.price, data.discountedPrice, data.id],
       function (error) {
           if (error) {
               console.error(error.message)

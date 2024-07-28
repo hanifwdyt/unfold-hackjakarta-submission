@@ -1,5 +1,5 @@
 const sqlite3 = require("sqlite3").verbose();
-const filepath = "./unfold.db";
+const filepath = "./unfold-insight-menu.db";
 const fs = require("fs");
 
 function createDbConnection() {
@@ -26,7 +26,9 @@ function createTable(db) {
         description   VARCHAR(255),
         caraMasak   VARCHAR(255),
         bahan VARCHAR(255),
-        kategori VARCHAR(255)
+        kategori VARCHAR(255),
+        price INTEGER,
+        discounted_price INTEGER
     );
 `);
 }
