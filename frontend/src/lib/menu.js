@@ -66,15 +66,13 @@ export async function getMenuById(id) {
 
 // Update a menu item by ID
 export async function updateMenu(id, data) {
-  console.log(process.env.API_URL)
   try {
     const response = await fetch(`${process.env.API_URL}/menu/${id}`, {
       method: 'POST',
       headers,
       body: JSON.stringify(data),
     });
-
-    if (!response.ok) {
+  if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
@@ -84,3 +82,32 @@ export async function updateMenu(id, data) {
     throw error;
   }
 }
+
+
+// Update a menu item by ID
+export async function generativeAI(data) {
+  const sendData = {
+    kategoriDesc : data.kategori,
+    descMaxChar : '200 karakter',
+    caraMasak : data.caraMasak,
+    bahan: data.bahan,
+    namaMenu: data.title + ', 20 karakter maksimal'
+  }
+
+  try {
+    const response = await fetch(`${process.env.API_URL}/genai/menu`, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(sendData),
+    });
+  if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error(`Error updating menu with ID`, error);
+    throw error;
+  }
+}
+

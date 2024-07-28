@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 const menuItems = [
   { src: "/assets/images/resources/food.png", width: 51, height: 50, alt: "food", label: "Orders", url: "#" },
-  { src: "/assets/images/resources/mart.png", width: 51, height: 50, alt: "mart", label: "Menu", url: "#" },
+  { src: "/assets/images/resources/mart.png", width: 51, height: 50, alt: "mart", label: "Menu", url: "/menu" },
   { src: "/assets/images/resources/delivery.png", width: 51, height: 50, alt: "delivery", label: "Loans", url: "#" },
   { src: "/assets/images/resources/transport.png", width: 51, height: 50, alt: "transport", label: "Marketing", url: "#" },
   { src: "/assets/images/resources/bag.png", width: 51, height: 50, alt: "bag", label: "Employee", url: "#" },

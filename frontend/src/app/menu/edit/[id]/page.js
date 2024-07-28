@@ -13,12 +13,12 @@ export default async function Page({ params }) {
     kategori: menu.kategori,
     title: menu.title,
     caraMasak: menu.caraMasak,
-    bahan: menu.bahan
+    bahan: menu.bahan,
+    deskripsi: menu.description
   };
-
   return (
     <>
-      <div className=''>
+      <div>
         <Header title="Create new menu with AI" route="/menu" />
       </div>
       <div>
