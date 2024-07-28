@@ -5,6 +5,7 @@ const app = express()
 const port = 3000
 
 const chatgpt = require('./lib/chatgpt')
+const menuModel = require('./model/menu')
 
 app.use(express.json())
 
@@ -57,6 +58,68 @@ app.post('/genai/menu/mock', apiKeyMiddleware, async (req, res) => {
     ];
 
     res.json(menu);
+});
+
+// penunjang kehidupan
+app.post('/menu', apiKeyMiddleware, async (req, res) => {
+
+    const insert_request = {
+        title: req.body.title,
+        description: req.body.description,
+        caraMasak: req.body.caraMasak,
+        bahan: req.body.bahan,
+        kategori: req.body.kategori
+    }
+    
+    menuModel.insert(insert_request)
+
+    res.json(insert_request);
+});
+
+app.post('/menu/:id', apiKeyMiddleware, async (req, res) => {
+
+    const id = req.params.id
+
+    const update_request = {
+        title: req.body.title,
+        description: req.body.description,
+        caraMasak: req.body.caraMasak,
+        bahan: req.body.bahan,
+        kategori: req.body.kategori,
+        id: id
+    }
+    
+    menuModel.update(update_request)
+
+    res.json(update_request);
+});
+
+app.get('/menu/:id', apiKeyMiddleware, async (req, res) => {
+    
+    const id = req.params.id
+
+    try {
+        const rows = await menuModel.findById(id)
+        console.log(rows)
+        
+        res.json(rows)
+    } catch (error) {
+        console.error(error)
+        res.status(500)
+    }
+});
+
+app.get('/menus', apiKeyMiddleware, async (req, res) => {
+    
+    try {
+        const rows = await menuModel.all()
+        console.log(rows)
+        
+        res.json(rows)
+    } catch (error) {
+        console.error(error)
+        res.status(500)
+    }
 });
 
 
