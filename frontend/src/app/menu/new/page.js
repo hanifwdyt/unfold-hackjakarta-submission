@@ -4,7 +4,7 @@ import React from 'react'
 function Page() {
   return (
     <div>
-      <Header title="Create new menu with AI" route="/menu"  />
+      <Header title="Optimasi menu dengan AI" route="/menu"  />
     </div>
   )
 }

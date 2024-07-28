@@ -71,7 +71,7 @@ const EditModal = ({ onClose, id }) => {
           <Link href={`/menu/edit/${id}`} prefetch={false} className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
               <PiOpenAiLogoLight />
-              <span className="text-lg font-medium">Enhance menu with AI</span>
+              <span className="text-lg font-medium">Optimasi menu dengan AI</span>
               <span className="bg-red-500 text-white text-[10px] px-2 py-1 rounded-full">new</span>
             </div>
             <MdKeyboardArrowRight />
@@ -79,21 +79,21 @@ const EditModal = ({ onClose, id }) => {
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
               <RiEditLine />
-              <span className="text-gray-700">Edit item</span>
+              <span className="text-gray-700">Edit menu</span>
             </div>
             <MdKeyboardArrowRight />
           </div>
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
               <IoListOutline />
-              <span className="text-gray-700">Manage sales limit</span>
+              <span className="text-gray-700">Atur limit penjualan</span>
             </div>
             <MdKeyboardArrowRight />
           </div>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <HiChartBar />
-              <span className="text-gray-700">See item insights</span>
+              <span className="text-gray-700">Lihat menu insight</span>
             </div>
             <MdKeyboardArrowRight />
           </div>
@@ -110,7 +110,7 @@ const CreateModal = ({ onClose }) => (
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
             <PiOpenAiLogoLight />
-            <span className="text-lg font-medium">Enhance menu with AI</span>
+            <span className="text-lg font-medium">Buat menu baru dengan AI</span>
           </div>
           <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full">new</span>
           <MdKeyboardArrowRight />
@@ -118,14 +118,14 @@ const CreateModal = ({ onClose }) => (
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
             <IoAddCircle />
-            <span className="text-gray-700">Add a new item</span>
+            <span className="text-gray-700">Tambah menu baru</span>
           </div>
           <MdKeyboardArrowRight />
         </div>
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
             <MdAddToPhotos />
-            <span className="text-gray-700">Add a new category</span>
+            <span className="text-gray-700">Tambah kategori baru</span>
           </div>
           <MdKeyboardArrowRight />
         </div>

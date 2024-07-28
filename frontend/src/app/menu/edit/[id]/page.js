@@ -19,7 +19,7 @@ export default async function Page({ params }) {
   return (
     <>
       <div className=''>
-        <Header title="Create new menu with AI" route="/menu" />
+        <Header title="Buat menu baru dengan AI" route="/menu" />
       </div>
       <div>
         <Banner />
