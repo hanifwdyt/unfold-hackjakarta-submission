@@ -28,7 +28,8 @@ function createTable(db) {
         bahan VARCHAR(255),
         kategori VARCHAR(255),
         price INTEGER,
-        discounted_price INTEGER
+        discounted_price INTEGER,
+        ai_enhanced BOOLEAN
     );
 `);
 }

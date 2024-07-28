@@ -74,7 +74,8 @@ app.post('/menu', apiKeyMiddleware, async (req, res) => {
         bahan: req.body.bahan,
         kategori: req.body.kategori,
         price: req.body.price,
-        discountedPrice: req.body.discountedPrice
+        discountedPrice: req.body.discountedPrice,
+        aiEnhanced: req.body.aiEnhanced
     }
     
     menuModel.insert(insert_request)
@@ -94,6 +95,7 @@ app.post('/menu/:id', apiKeyMiddleware, async (req, res) => {
         kategori: req.body.kategori,
         price: req.body.price,
         discountedPrice: req.body.discountedPrice,
+        aiEnhanced: req.body.aiEnhanced,
         id: id
     }
     
